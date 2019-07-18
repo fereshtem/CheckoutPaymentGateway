@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CheckoutPaymentGatewayDomain.Extensions;
 
 namespace CheckoutPaymentGatewayDomain
 {
@@ -11,8 +12,8 @@ namespace CheckoutPaymentGatewayDomain
         public Payment(Guid identifier, Card card, decimal amount)
         {
             Identifier = identifier;
-            Card = card;
-            Amount = amount;
+            Card = card.IfNotNull();
+            Amount = amount.IfPositiveNumber();
         }
         public Guid Identifier { get; set; }
         public Card Card { get; set; }

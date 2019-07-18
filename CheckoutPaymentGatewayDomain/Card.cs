@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CheckoutPaymentGatewayDomain.Extensions;
 
 namespace CheckoutPaymentGatewayDomain
 {
@@ -10,10 +11,10 @@ namespace CheckoutPaymentGatewayDomain
     {
         public Card(string cardNumber, int month, int year, int cvv)
         {
-            CardNumber = cardNumber;
-            Month = month;
-            Year = year;
-            CVV = cvv;
+            CardNumber = cardNumber.IfNotNullOrEmpty();
+            Month = month.IfPositiveNumber();
+            Year = year.IfPositiveNumber();
+            CVV = cvv.IfPositiveNumber();
         }
         public string CardNumber { get; set; }
         public int Month { get; set; }
