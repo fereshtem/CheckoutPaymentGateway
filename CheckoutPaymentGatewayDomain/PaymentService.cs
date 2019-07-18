@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CheckoutPaymentGatewayDomain.Exceptions;
+using CheckoutPaymentGatewayDomain.Extensions;
 
 namespace CheckoutPaymentGatewayDomain
 {
@@ -13,6 +15,7 @@ namespace CheckoutPaymentGatewayDomain
         #endregion
         public void AddPayment(Payment payment)
         {
+            payment.IfNotNull();
             if (!_payments.Keys.Contains(payment.Identifier))
             {
                 _payments.Add(payment.Identifier, payment);
@@ -22,7 +25,7 @@ namespace CheckoutPaymentGatewayDomain
                 Payment existedPayment = _payments[payment.Identifier];
                 if (existedPayment != null)
                 {
-
+                    throw new PaymentAlreadyExistsException();
                 }
                 _payments.Add(payment.Identifier, payment);
             }

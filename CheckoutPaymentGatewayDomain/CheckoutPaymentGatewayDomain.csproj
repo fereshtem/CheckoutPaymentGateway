@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="Exceptions\DomainExceptions.cs" />
+    <Compile Include="Exceptions\PaymentAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\PaymentNotFoundException.cs" />
     <Compile Include="Extensions\NullDefence.cs" />
     <Compile Include="IPaymentService.cs" />
     <Compile Include="Payment.cs" />
