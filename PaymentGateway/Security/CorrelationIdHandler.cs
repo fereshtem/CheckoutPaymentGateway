@@ -15,10 +15,14 @@ namespace CheckoutPaymentGatewayWebService.Security
         private const string key = "X-Correlation-ID";
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-
         {
+            var correlationIdValue = request.GetCorrelationId();
+            if (!request.Headers.Contains(key))
+            {
+                correlationIdValue = new Guid();
+            }
             var response = await base.SendAsync(request, cancellationToken);
-            response.Headers.Add(key, request.GetCorrelationId().ToString());
+            response.Headers.Add(key, correlationIdValue.ToString());
 
             return response;
 
