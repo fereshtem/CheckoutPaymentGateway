@@ -11,6 +11,11 @@ namespace CheckoutPaymentGatewayDomain
         Sucsucceed,
         Failed,
     }
+    public enum ProgramEnvironment
+    {
+        Development,
+        Production,
+    }
     public class PaymentResult
     {
         public Guid Identifier { get; set; }

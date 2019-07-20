@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CheckoutPaymentGatewayInfrastructure
+namespace CheckoutPaymentGatewayDomain
 {
-    public class Class1
+    public class AquiringBankService : IAquiringBankService
     {
     }
 }

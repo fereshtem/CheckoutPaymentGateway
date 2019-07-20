@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AquiringBankService.cs" />
     <Compile Include="BankService.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Correlation.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Exceptions\PaymentAlreadyExistsException.cs" />
     <Compile Include="Exceptions\PaymentNotFoundException.cs" />
     <Compile Include="Extensions\NullDefence.cs" />
+    <Compile Include="IAquiringBankService.cs" />
     <Compile Include="IBankService.cs" />
     <Compile Include="IPaymentService.cs" />
     <Compile Include="Payment.cs" />
