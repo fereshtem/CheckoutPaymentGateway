@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CheckoutPaymentGatewayWebClient
 {
-    public class Class1
+    public static class ApiVersions
     {
+        public const string Version1 = "v1";
     }
 }

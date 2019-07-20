@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace CheckoutPaymentGatewayWebClient.Models
 {
-    [DataContract(Name = "Payment")]
-    public class PaymentModel
+    [DataContract(Name = "PaymentResult")]
+    public class PaymentResultModel
     {
-        public CardModel Card { get; set; }
-        public decimal Amount { get; set; }
+        [DataMember]
+        public Guid Identifier { get; set; }
+
+        [DataMember]
+        public int Status { get; set; }
     }
 }
