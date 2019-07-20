@@ -12,23 +12,18 @@ namespace CheckoutPaymentGatewayDomain
     {
         #region Fields
         private readonly Dictionary<Guid, Payment> _payments;
+        private readonly IBankService _bankService;
         #endregion
-        public void AddPayment(Payment payment)
+        public PaymentService(IBankService bankService)
+        {
+            _bankService = bankService;
+        }
+        public PaymentResult AddPayment(Payment payment)
         {
             payment.IfNotNull();
-            if (!_payments.Keys.Contains(payment.Identifier))
-            {
-                _payments.Add(payment.Identifier, payment);
-            }
-            else
-            {
-                Payment existedPayment = _payments[payment.Identifier];
-                if (existedPayment != null)
-                {
-                    throw new PaymentAlreadyExistsException();
-                }
-                _payments.Add(payment.Identifier, payment);
-            }
+            var paymentResult = _bankService.ProcessPaymentRequest(payment);
+            _payments.Add(paymentResult.Identifier, payment);
+            return paymentResult;
         }
 
         public Payment GetPaymentHistory(Guid identifier)

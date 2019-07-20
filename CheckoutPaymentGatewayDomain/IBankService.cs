@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CheckoutPaymentGatewayDomain
 {
-    public interface IPaymentService
+    public interface IBankService
     {
-        Payment GetPaymentHistory(Guid identifier);
-        PaymentResult AddPayment(Payment payment);
+        PaymentResult ProcessPaymentRequest(Payment payment);
     }
 }
