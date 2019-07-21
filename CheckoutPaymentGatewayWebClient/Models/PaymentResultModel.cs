@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace CheckoutPaymentGatewayWebClient.Models
 {
+    public enum PaymentStatus
+    {
+        Sucsucceed,
+        Failed,
+    }
     [DataContract(Name = "PaymentResult")]
     public class PaymentResultModel
     {
@@ -14,6 +19,6 @@ namespace CheckoutPaymentGatewayWebClient.Models
         public Guid Identifier { get; set; }
 
         [DataMember]
-        public int Status { get; set; }
+        public PaymentStatus Status { get; set; }
     }
 }

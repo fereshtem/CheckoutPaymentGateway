@@ -1,4 +1,8 @@
-﻿using System;
+﻿using CheckoutPaymentGatewayInfrastructure;
+using CheckoutPaymentGatewayWebService;
+using SimpleInjector;
+using SimpleInjector.Integration.WebApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,15 +13,21 @@ using System.Web.Routing;
 
 namespace PaymentGateway
 {
-    public class WebApiApplication : System.Web.HttpApplication
-    {
-        protected void Application_Start()
+        public class WebApiApplication : System.Web.HttpApplication
         {
-            AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            protected void Application_Start()
+            {
+                GlobalConfiguration.Configure(WebApiConfig.Register);
+                MappersBootstrap.Initialize();
+
+
+                var container = RegisterDependencies.Initialize();
+                container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+
+                container.Verify();
+
+                GlobalConfiguration.Configuration.DependencyResolver =
+                    new SimpleInjectorWebApiDependencyResolver(container);
+            }
         }
-    }
 }
