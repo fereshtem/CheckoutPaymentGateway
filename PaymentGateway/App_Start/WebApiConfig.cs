@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using CheckoutPaymentGatewayWebService.Security;
+using CheckoutPaymentGatewayDomain;
 
 namespace PaymentGateway
 {
@@ -13,8 +14,10 @@ namespace PaymentGateway
     {
         public static void Register(HttpConfiguration config)
         {
-            config.MapHttpAttributeRoutes();
+            Environment.SetEnvironmentVariable("ProgramEnvironment", ProgramEnvironment.Development.ToString());
 
+            config.MapHttpAttributeRoutes();
+            
             RegisterHandlers(config);
         }
 

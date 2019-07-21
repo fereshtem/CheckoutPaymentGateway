@@ -18,10 +18,10 @@ namespace CheckoutPaymentGatewayInfrastructure
 
             container.Register<IPaymentService, PaymentService>(Lifestyle.Singleton);
 
-            //if(Environment.GetEnvironmentVariable("ProgramEnvironment") == ProgramEnvironment.Development.ToString())
+            if(Environment.GetEnvironmentVariable("ProgramEnvironment") == ProgramEnvironment.Development.ToString())
                 container.Register<IBankService, BankService>(Lifestyle.Singleton);
-            //else
-            //    container.Register<IAquiringBankService, AquiringBankService>(Lifestyle.Singleton);
+            else
+                container.Register<IAquiringBankService, AquiringBankService>(Lifestyle.Singleton);
 
             return container;
         }
