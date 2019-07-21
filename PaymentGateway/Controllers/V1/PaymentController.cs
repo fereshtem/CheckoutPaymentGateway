@@ -36,7 +36,6 @@ namespace CheckoutPaymentGatewayWebService.Controllers.V1
         {
             var paymentResult =_paymentService.AddPayment(PaymentModelToPaymentMapper.Map(paymentModel));
             return Json(paymentResult);
-            //return Ok();
         }
     }
 }
