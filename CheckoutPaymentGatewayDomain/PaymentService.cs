@@ -16,6 +16,7 @@ namespace CheckoutPaymentGatewayDomain
         #endregion
         public PaymentService(IBankService bankService)
         {
+            _payments = new Dictionary<Guid, Payment>();
             _bankService = bankService;
         }
         public PaymentResult AddPayment(Payment payment)

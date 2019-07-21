@@ -10,7 +10,7 @@ namespace CheckoutPaymentGatewayDomain
     {
         public PaymentResult ProcessPaymentRequest(Payment payment)
         {
-            return new PaymentResult() { Identifier = new Guid(), status = PaymentStatus.Sucsucceed };
+            return new PaymentResult() ;
         }
     }
 }

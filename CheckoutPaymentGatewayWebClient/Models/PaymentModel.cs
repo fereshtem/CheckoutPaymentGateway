@@ -10,7 +10,9 @@ namespace CheckoutPaymentGatewayWebClient.Models
     [DataContract(Name = "Payment")]
     public class PaymentModel
     {
+        [DataMember]
         public CardModel Card { get; set; }
+        [DataMember]
         public decimal Amount { get; set; }
     }
 }
